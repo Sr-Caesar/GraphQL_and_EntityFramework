@@ -4,6 +4,7 @@ using Serilog;
 using GraphQL_Exercice.GraphQLSchema.Querries;
 using GraphQL_Exercice.GraphQLResolvers;
 using GraphQL_Exercice.GraphQLSchema.Mutations;
+using GraphQL_Exercice.Resolvers;
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
@@ -18,6 +19,7 @@ builder.Services.AddDbContext<ExerciceData.Context.AppDbContext>(option =>
 });
 
 builder.Services.AddScoped<CompanyRepository>();
+builder.Services.AddScoped<DriverRepository>();
 builder.Services.AddGraphQLServer()
     .AddMutationConventions()
     .AddMutationType<Mutation>()

@@ -23,6 +23,7 @@ type DriverModel {
 
 type Query {
   companies: [CompanyModel!]!
+  drivers: [DriverModel!]!
 }
 
 type TirModel {
