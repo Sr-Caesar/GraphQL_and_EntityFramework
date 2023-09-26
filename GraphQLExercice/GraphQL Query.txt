@@ -1,0 +1,49 @@
+##GET BY ID
+# {
+#   companyById(id: 1) {
+#     id
+#     name
+#     dateOfFundation
+#   }
+# }
+
+##GET ALL
+# {
+#   allCompanies{
+#     id
+#     name
+#     dateOfFundation
+#   }
+# }
+
+
+##UPDATE
+# mutation {
+#   updateCompany(input: { id: 1, name: "NuovSZASSzienda" }) {
+#     company{
+#     id
+#     name
+#     dateOfFundation
+#     }
+#   }
+# }
+
+##INSERT
+# mutation {
+#   insertCompany(input: {name: "NUOVO LEEMENTEO"}){
+#     company{
+#       name
+#     }
+#   }
+# }
+
+## #DELETE
+# mutation{
+#   deleteCompany(input: {id: 4}){
+#     company{
+#       id
+#       name
+#       dateOfFundation
+#     }
+#   }
+# }

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQLExercice", "GraphQLExercice.csproj", "{E443F915-FBE8-46C8-B50A-BEB636FA018F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceData", "..\ExerciceData\ExerciceData.csproj", "{657CED7D-DA12-485C-8D05-B3117A15FD8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphTesting", "..\GraphTesting\GraphTesting.csproj", "{41016673-552D-49C3-A30E-3DAD0EE1EBD5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E443F915-FBE8-46C8-B50A-BEB636FA018F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E443F915-FBE8-46C8-B50A-BEB636FA018F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E443F915-FBE8-46C8-B50A-BEB636FA018F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E443F915-FBE8-46C8-B50A-BEB636FA018F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{657CED7D-DA12-485C-8D05-B3117A15FD8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{657CED7D-DA12-485C-8D05-B3117A15FD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{657CED7D-DA12-485C-8D05-B3117A15FD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{657CED7D-DA12-485C-8D05-B3117A15FD8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41016673-552D-49C3-A30E-3DAD0EE1EBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41016673-552D-49C3-A30E-3DAD0EE1EBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41016673-552D-49C3-A30E-3DAD0EE1EBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41016673-552D-49C3-A30E-3DAD0EE1EBD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2570AD3A-130A-4AF4-A33F-2403BDB312DE}
+	EndGlobalSection
+EndGlobal
