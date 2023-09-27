@@ -5,6 +5,7 @@ using GraphQL_Exercice.GraphQLSchema.Querries;
 using GraphQL_Exercice.GraphQLResolvers;
 using GraphQL_Exercice.GraphQLSchema.Mutations;
 using GraphQL_Exercice.Resolvers;
+using GraphQL_Exercice.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()

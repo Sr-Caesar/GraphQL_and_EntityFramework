@@ -3,12 +3,16 @@ using ExerciceData.Models;
 using GraphQL_Exercice.GraphQLSchema;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using static GraphQL_Exercice.Repository.ICompanyRepository;
 
 namespace GraphQL_Exercice.GraphQLResolvers
 {
-    public class CompanyRepository 
+    public class CompanyRepository : ICompanyRepository
     {
         private readonly AppDbContext _dbContext;
+        public CompanyRepository()
+        {
+        }
         public CompanyRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -39,7 +43,7 @@ namespace GraphQL_Exercice.GraphQLResolvers
             Log.Information($"New Company inserted at {DateTime.Now}");
             return company;
         }
-        public async Task<CompanyModel> CreateAsync(CompanyModel company)
+        public virtual async Task<CompanyModel> CreateAsync(CompanyModel company)
         {
             try
             {

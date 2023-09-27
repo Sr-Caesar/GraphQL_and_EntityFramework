@@ -6,4 +6,7 @@ global using HotChocolate;
 global using HotChocolate.Execution;
 global using Snapshooter.Xunit;
 global using GraphQL_Exercice.GraphQLSchema.Querries;
-
+global using ExerciceData.Context;
+global using GraphQL_Exercice.GraphQLResolvers;
+global using Microsoft.AspNetCore.Builder;
+global using Moq;

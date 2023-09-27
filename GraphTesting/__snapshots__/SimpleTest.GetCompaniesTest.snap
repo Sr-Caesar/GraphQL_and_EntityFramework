@@ -1,0 +1,31 @@
+﻿{
+  "data": {
+    "companies": [
+      {
+        "id": 1,
+        "name": "Company A",
+        "dateOfFundation": "2020-01-01T00:00:00.000\u002B01:00"
+      },
+      {
+        "id": 2,
+        "name": "Company B",
+        "dateOfFundation": "2015-05-15T00:00:00.000\u002B02:00"
+      },
+      {
+        "id": 3,
+        "name": "Company C",
+        "dateOfFundation": "2018-10-10T00:00:00.000\u002B02:00"
+      },
+      {
+        "id": 6,
+        "name": "prova",
+        "dateOfFundation": "2019-12-31T23:00:00.000\u002B01:00"
+      },
+      {
+        "id": 7,
+        "name": "NOME DECENTE",
+        "dateOfFundation": "0001-01-01T00:00:00.000Z"
+      }
+    ]
+  }
+}
