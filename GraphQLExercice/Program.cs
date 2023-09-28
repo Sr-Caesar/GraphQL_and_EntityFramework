@@ -19,7 +19,7 @@ builder.Services.AddDbContext<ExerciceData.Context.AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddScoped<CompanyRepository>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<DriverRepository>();
 builder.Services.AddGraphQLServer()
     .AddMutationConventions()

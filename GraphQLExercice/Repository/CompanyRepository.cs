@@ -1,9 +1,9 @@
 ﻿using ExerciceData.Context;
 using ExerciceData.Models;
 using GraphQL_Exercice.GraphQLSchema;
+using GraphQL_Exercice.Repository;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using static GraphQL_Exercice.Repository.ICompanyRepository;
 
 namespace GraphQL_Exercice.GraphQLResolvers
 {
@@ -17,7 +17,7 @@ namespace GraphQL_Exercice.GraphQLResolvers
         {
             _dbContext = dbContext;
         }
-        public async Task<CompanyModel> UpdateAsync(CompanyModel updatedCompany)
+        public virtual async Task<CompanyModel> UpdateAsync(CompanyModel updatedCompany)
         {
             var existingCompany = await _dbContext.Companies.FindAsync(updatedCompany.Id);
             if (existingCompany == null)
@@ -30,18 +30,6 @@ namespace GraphQL_Exercice.GraphQLResolvers
             await _dbContext.SaveChangesAsync();
             Log.Information($"Company with ID {updatedCompany.Id} updated");
             return existingCompany;
-        }
-        public async Task<CompanyModel> InsertAsync(string name)
-        {
-            var company = new CompanyModel()
-            {
-                Name = name,
-                DateOfFundation = DateTime.Now
-            };
-            _dbContext.Companies.Add(company);
-            await _dbContext.SaveChangesAsync();
-            Log.Information($"New Company inserted at {DateTime.Now}");
-            return company;
         }
         public virtual async Task<CompanyModel> CreateAsync(CompanyModel company)
         {
@@ -57,8 +45,19 @@ namespace GraphQL_Exercice.GraphQLResolvers
                 throw; 
             }
         }
-
-        public async Task<CompanyModel?> DeleteAsync(int id)
+        public virtual async Task<CompanyModel> InsertAsync(string name)
+        {
+            var company = new CompanyModel()
+            {
+                Name = name,
+                DateOfFundation = DateTime.Now
+            };
+            _dbContext.Companies.Add(company);
+            await _dbContext.SaveChangesAsync();
+            Log.Information($"New Company inserted at {DateTime.Now}");
+            return company;
+        }
+        public virtual async Task<CompanyModel?> DeleteAsync(int id)
         {
             var company = await _dbContext.Companies.FindAsync(id);
             if (company == null)
@@ -74,7 +73,7 @@ namespace GraphQL_Exercice.GraphQLResolvers
             Log.Information($"Drivers and Tirs associated with the company have been removed from the database.");
             return company;
         }
-        public async Task<CompanyModel?> GetCompanyByIdAsync(int id)
+        public virtual async Task<CompanyModel?> GetCompanyByIdAsync(int id)
         {
             var company = await _dbContext.Companies.FirstOrDefaultAsync(c => c.Id == id);
             if (company == null)
@@ -84,7 +83,7 @@ namespace GraphQL_Exercice.GraphQLResolvers
             Log.Information($"Company found for ID {id}");
             return company;
         }
-        public async Task<IEnumerable<CompanyModel>?> GetAllCompaniesAsync()
+        public virtual async Task<IEnumerable<CompanyModel>?> GetAllCompaniesAsync()
         {
             var companies = await _dbContext.Companies.ToListAsync();
             if (companies == null || !companies.Any())
