@@ -20,6 +20,8 @@ builder.Services.AddDbContext<ExerciceData.Context.AppDbContext>(option =>
 });
 
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<IDriverRepository, DriverRepository>();
+builder.Services.AddScoped<ITirRepository, TirRepository>();
 builder.Services.AddScoped<DriverRepository>();
 builder.Services.AddGraphQLServer()
     .AddMutationConventions()

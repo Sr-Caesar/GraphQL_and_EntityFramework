@@ -1,12 +1,13 @@
 ﻿using ExerciceData.Context;
 using ExerciceData.Models;
 using GraphQL_Exercice.GraphQLSchema;
+using GraphQL_Exercice.Repository;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace GraphQL_Exercice.GraphQLResolvers
 {
-    public class TirRepository
+    public class TirRepository : ITirRepository
     {
         private readonly AppDbContext _dbContext;
         public TirRepository(AppDbContext dbContext)
@@ -27,7 +28,6 @@ namespace GraphQL_Exercice.GraphQLResolvers
             Log.Information($"Tir with ID {updatedTir.Id} updated.");
             return existingTir;
         }
-
         public async Task<TirModel> InsertAsync(string model, int companyId, int driverId)
         {
             var tir = new TirModel()
@@ -42,7 +42,6 @@ namespace GraphQL_Exercice.GraphQLResolvers
             Log.Information($"New Tir with ID {tir.Id} inserted at {DateTime.Now}");
             return tir;
         }
-
         public async Task<TirModel?> DeleteAsync(int id)
         {
             var tir = await _dbContext.Tirs.FindAsync(id);

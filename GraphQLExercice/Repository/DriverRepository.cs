@@ -1,19 +1,20 @@
 ﻿using ExerciceData.Context;
 using ExerciceData.Models;
 using GraphQL_Exercice.GraphQLResolvers;
+using GraphQL_Exercice.Repository;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace GraphQL_Exercice.Resolvers
 {
-    public class DriverRepository
+    public class DriverRepository : IDriverRepository
     {
         private readonly AppDbContext _dbContext;
         public DriverRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public async Task<DriverModel?> GetDriverByIdAsync(int id)
+        public virtual async Task<DriverModel?> GetDriverByIdAsync(int id)
         {
             var driver = await _dbContext.Drivers.FirstOrDefaultAsync(x => x.Id == id);
             if (driver == null)
@@ -23,7 +24,7 @@ namespace GraphQL_Exercice.Resolvers
             Log.Information($"Driver found for ID {id}");
             return driver;
         }
-        public async Task<DriverModel?> GetDriverByTirIdAsync(int id)
+        public virtual async Task<DriverModel?> GetDriverByTirIdAsync(int id)
         {
             var myDriver = await _dbContext.Tirs
                                 .Where(tir => tir.Id == id)
@@ -36,7 +37,7 @@ namespace GraphQL_Exercice.Resolvers
             Log.Information($"Driver found for ID {id}");
             return myDriver;
         }
-        public async Task<IEnumerable<DriverModel>?> GetAllDriversAsync()
+        public virtual async Task<IEnumerable<DriverModel>?> GetAllDriversAsync()
         {
             var drivers = await _dbContext.Drivers.ToListAsync();
             if (drivers == null || !drivers.Any())
@@ -46,7 +47,7 @@ namespace GraphQL_Exercice.Resolvers
             Log.Information("Drivers found in the database");
             return drivers;
         }
-        public async Task<DriverModel?> UpdateAsync(DriverModel updatedDriver)
+        public virtual async Task<DriverModel?> UpdateAsync(DriverModel updatedDriver)
         {
             var existingDriver = await _dbContext.Drivers.FindAsync(updatedDriver.Id);
             if (existingDriver == null)
@@ -59,7 +60,7 @@ namespace GraphQL_Exercice.Resolvers
             Log.Information($"Driver with ID {updatedDriver.Id} updated");
             return existingDriver;
         }
-        public async Task<DriverModel> InsertAsync(string name, string surname, int age, int tirId, int companyId)
+        public virtual async Task<DriverModel> InsertAsync(string name, string surname, int age, int tirId, int companyId)
         {
             var driver = new DriverModel()
             {
@@ -74,7 +75,7 @@ namespace GraphQL_Exercice.Resolvers
             Log.Information($"New Driver with ID {driver.Id} inserted at {DateTime.Now}");
             return driver;
         }
-        public async Task<DriverModel?> DeleteAsync(int id)
+        public virtual async Task<DriverModel?> DeleteAsync(int id)
         {
             var driver = await _dbContext.Drivers.FindAsync(id);
             if (driver == null)
