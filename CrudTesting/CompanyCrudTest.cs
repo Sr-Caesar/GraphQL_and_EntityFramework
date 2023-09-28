@@ -9,6 +9,7 @@ using Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using GraphQL_Exercice.Repository;
+using GreenDonut;
 
 namespace CrudTesting
 {
@@ -46,7 +47,7 @@ namespace CrudTesting
             _moqCompanyRepository.Verify(repo => repo.CreateAsync(It.IsAny<CompanyModel>()), Times.Once);
         }
         [Fact]
-        public async Task UpdatingTest() 
+        public async Task UpdatingTest()
         {
             CompanyModel noModifiedModel = new CompanyModel
             {
@@ -140,6 +141,29 @@ namespace CrudTesting
             Assert.Equal(1, result.Id);
             Assert.Equal("miao", result.Name);
             _moqCompanyRepository.Verify(repo => repo.GetCompanyByIdAsync(It.IsAny<int>()), Times.Once);
+        }
+        [Fact]
+        public async Task GetAllCompanyTest()
+        {
+            var companiesData = new List<CompanyModel>
+            {
+                new CompanyModel { Id = 1, Name = "Company1", DateOfFundation = DateTime.Now },
+                new CompanyModel { Id = 2, Name = "Company2", DateOfFundation = DateTime.Now },
+                new CompanyModel { Id = 3, Name = "Company3", DateOfFundation = DateTime.Now }
+            };
+            _moqCompanyRepository
+                .Setup(repo => repo.GetAllCompaniesAsync())
+                .ReturnsAsync(companiesData);
+            var result = await _myRep.GetAllCompaniesAsync();
+            var companyArray = result.ToArray();
+            Assert.NotNull(result);
+            Assert.Equal(3, result.Count());
+            for (int i = 0; i < companiesData.Count; i++)
+            {
+                Assert.Equal(companiesData[i].Id, companyArray[i].Id);
+                Assert.Equal(companiesData[i].Name, companyArray[i].Name);
+            }
+            _moqCompanyRepository.Verify(repo => repo.GetAllCompaniesAsync(), Times.Once);
         }
     }
 }

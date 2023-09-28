@@ -96,4 +96,3 @@ namespace GraphQL_Exercice.GraphQLResolvers
     }
 
 }
-
